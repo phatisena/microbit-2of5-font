@@ -7,13 +7,54 @@ namespace font2of5 {
 
     let temppin: string[] = ["11000", "10100", "10010", "10001", "01100", "01010", "01001", "00110", "00101", "00011"]
 
+    export function checknum (input: string) {
+        for (let i = 0; i < input.length; i++) {
+            if (!("0123456789".includes(input.charAt(i)))) {
+                return false
+            }
+        }
+        return true
+    }
+    
+    //%blockid=font2of5_write2of5input
+    //%block="write 2of5 code ( $num1 and $num2 )"
+    //%num1.min=0 num1.max=4 num1.defl=1
+    //%num2.min=0 num2.max=4 num2.defl=3
+    //%group="write code"
+    //%weight=1
+    export function write2of5(num1: number, num2: number) {
+        if (num1 == num2) { return -1 }
+        if ((num1 < 0 || num1 > 4) || (num2 < 0 || num2 > 4)) { return -1 }
+        let strval = ""
+        let numval = 0
+        for (let i = 0; i < 5; i++) {
+            if ((num1 == i) || (num2 == i)) {
+                strval = "" + strval + "1"
+            } else {
+                strval = "" + strval + "0"
+            }
+        }
+        numval = temppin.indexOf(strval)
+        return numval
+    }
+
     //%blockid=font2of5_print2of5number
-    //%block="show 2of5 number $valinput ||in horizontal $horizontal"
+    //%block="show 2of5 number $valinput ||in horizontal mode $horizontal"
     //%valinput.defl=84210
     //%group="show screen"
     //%weight=2
     export function show2of5number(valinput: number = 0, horizontal: boolean = false) {
-        let inputstr = valinput.toString()
+        show2of5string(valinput.toString(), horizontal)
+    }
+
+    //%blockid=font2of5_print2of5numberasstring
+    //%block="show 2of5 number $valinput as string ||in horizontal mode $horizontal"
+    //%valinput.defl="84210"
+    //%group="show screen"
+    //%weight=1
+    export function show2of5string(valinput: string = "", horizontal: boolean = false) {
+        if (!(checknum(valinput))) { return; }
+        let inputstr = valinput
         let outputstr = ""
         let strval = ""
         for (let j = inputstr.length - 1; j >= 0; j--) {
@@ -25,11 +66,16 @@ namespace font2of5 {
                 outputstr = "" + "0" + outputstr
             }
         }
-        basic.clearScreen()
         for (let i = 0; i < outputstr.length; i++) {
             strval = temppin[parseInt(outputstr.charAt(i))]
             for (let j = 0; j < strval.length; j++) {
-                if (parseInt(strval.charAt(j)) > 0) {
+                if (parseInt(strval.charAt(j)) <= 0) {
+                    if (horizontal) {
+                        led.unplot(j, i)
+                    } else {
+                        led.unplot(i, j)
+                    }
+                } else if (parseInt(strval.charAt(j)) > 0) {
                     if (horizontal) {
                         led.plot(j, i)
                     } else {
