@@ -20,6 +20,11 @@ namespace font2of5 {
             outputstr = "" + inputstr.charAt(j) + outputstr
             if (Math.abs((inputstr.length - 1) - j) > 4) { break; }
         }
+        if (outputstr.length < 4) {
+            while (outputstr.length < 4) {
+                outputstr = "" + "0" + outputstr
+            }
+        }
         basic.clearScreen()
         for (let i = 0; i < outputstr.length; i++) {
             strval = temppin[parseInt(outputstr.charAt(i))]
@@ -36,3 +41,5 @@ namespace font2of5 {
     }
 
 }
+
+font2of5.show2of5number(2549)
