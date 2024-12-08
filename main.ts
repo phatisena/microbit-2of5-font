@@ -20,8 +20,8 @@ namespace font2of5 {
             outputstr = "" + inputstr.charAt(j) + outputstr
             if (Math.abs((inputstr.length - 1) - j) > 4) { break; }
         }
-        if (outputstr.length < 4) {
-            while (outputstr.length < 4) {
+        if (outputstr.length < 5) {
+            while (outputstr.length < 5) {
                 outputstr = "" + "0" + outputstr
             }
         }
@@ -41,5 +41,3 @@ namespace font2of5 {
     }
 
 }
-
-font2of5.show2of5number(2549)
