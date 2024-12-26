@@ -1,7 +1,7 @@
 
 //%block="2of5 font"
 //%icon="\uf02a"
-//%color="#1af09e"
+//%color="#0749a6"
 //%weight=5
 namespace font2of5 {
 
