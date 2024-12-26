@@ -76,18 +76,18 @@ namespace font2of5 {
             for (let j = 0; j < strval.length; j++) {
                 if (pin) {
                     if (parseInt(guardpin.charAt(j)) <= 0) {
-                        if (parseInt(strval.charAt(j)) <= 0) {
-                    if (horizontal) {
-                        led.unplot(j, i)
-                    } else {
-                        led.unplot(i, j)
-                    }
-                } else if (parseInt(strval.charAt(j)) > 0) {
+                        if (parseInt(strval.charAt(j)) > 0) {
                     if (horizontal) {
                         led.plot(j, i)
                     } else {
                         led.plot(i, j)
                     }
+                } else if (parseInt(strval.charAt(j)) <= 0) {
+                            if (horizontal) {
+                        led.unplot(j, i)
+                    } else {
+                        led.unplot(i, j)
+                            }
                         }
                     } else if (parseInt(guardpin.charAt(j)) > 0) {
                         if (parseInt(strval.charAt(j)) > 0) {
