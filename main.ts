@@ -17,12 +17,12 @@ namespace font2of5 {
     }
     
     //%blockid=font2of5_write2of5input
-    //%block="write 2of5 code ( $num1 and $num2 )"
+    //%block="write 2of5 code ( $num1 and $num2 )|| with guard $pin"
     //%num1.min=0 num1.max=4 num1.defl=1
     //%num2.min=0 num2.max=4 num2.defl=3
     //%group="write code"
     //%weight=1
-    export function write2of5(num1: number, num2: number) {
+    export function write2of5(num1: number, num2: number, pin: boolean = false) {
         if (num1 == num2) { return -1 }
         if ((num1 < 0 || num1 > 4) || (num2 < 0 || num2 > 4)) { return -1 }
         let strval = ""
@@ -43,8 +43,8 @@ namespace font2of5 {
     //%valinput.defl=84210
     //%group="show screen"
     //%weight=2
-    export function show2of5number(valinput: number = 0, horizontal: boolean = false) {
-        show2of5string(valinput.toString(), horizontal)
+    export function show2of5number(valinput: number = 0,pin: boolean = false, horizontal: boolean = false) {
+        show2of5string(valinput.toString(), pin, horizontal)
     }
 
     //%blockid=font2of5_print2of5numberasstring
@@ -52,12 +52,16 @@ namespace font2of5 {
     //%valinput.defl="84210"
     //%group="show screen"
     //%weight=1
-    export function show2of5string(valinput: string = "", horizontal: boolean = false) {
+    export function show2of5string(valinput: string = "", pin: boolean = false, horizontal: boolean = false) {
         if (!(checknum(valinput))) { return; }
+        let pinnum: number = null
+        if (pin) pinnum = parseInt(valinput.charAt(valinput.length - 1));
         let inputstr = valinput
         let outputstr = ""
         let strval = ""
-        for (let j = inputstr.length - 1; j >= 0; j--) {
+        let gapval = 0
+        if (pin) gapval += 1;
+        for (let j = (inputstr.length - 1) - gapval; j >= 0; j--) {
             outputstr = "" + inputstr.charAt(j) + outputstr
             if (Math.abs((inputstr.length - 1) - j) > 4) { break; }
         }
@@ -66,6 +70,7 @@ namespace font2of5 {
                 outputstr = "" + "0" + outputstr
             }
         }
+        let guardpin = temppin[pinnum]
         for (let i = 0; i < outputstr.length; i++) {
             strval = temppin[parseInt(outputstr.charAt(i))]
             for (let j = 0; j < strval.length; j++) {
