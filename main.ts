@@ -75,7 +75,7 @@ namespace font2of5 {
             strval = temppin[parseInt(outputstr.charAt(i))]
             for (let j = 0; j < strval.length; j++) {
                 if (pin) {
-                    if (parseInt(guardpin.charAt(j)) <= 0) {
+                    if (parseInt(guardpin.charAt(i)) <= 0) {
                         if (parseInt(strval.charAt(j)) > 0) {
                     if (horizontal) {
                         led.plot(j, i)
@@ -89,7 +89,7 @@ namespace font2of5 {
                         led.unplot(i, j)
                             }
                         }
-                    } else if (parseInt(guardpin.charAt(j)) > 0) {
+                    } else if (parseInt(guardpin.charAt(i)) > 0) {
                         if (parseInt(strval.charAt(j)) > 0) {
                     if (horizontal) {
                         led.unplot(j, i)
