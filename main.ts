@@ -39,7 +39,7 @@ namespace font2of5 {
     }
 
     //%blockid=font2of5_print2of5number
-    //%block="show 2of5 number $valinput ||with guard $pin in horizontal mode $horizontal"
+    //%block="show 2of5 number $valinput with guard $pin|| in horizontal mode $horizontal"
     //%valinput.defl=84210
     //%group="show screen"
     //%weight=2
@@ -48,7 +48,7 @@ namespace font2of5 {
     }
 
     //%blockid=font2of5_print2of5numberasstring
-    //%block="show 2of5 number $valinput as string || with guard $pin in horizontal mode $horizontal"
+    //%block="show 2of5 number $valinput as string with guard $pin|| in horizontal mode $horizontal"
     //%valinput.defl="84210"
     //%group="show screen"
     //%weight=1
