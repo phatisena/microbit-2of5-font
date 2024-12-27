@@ -210,7 +210,7 @@ namespace font2of5 {
      * @param to render in horizontal mode if true
      */
     //%blockid=font2of5_showtwonumbervalues
-    //%block="show ( $num1 and $num2 ) as two number values|| in horizontal $horizontal"
+    //%block="show ( $num1 and $num2 ) as two number values with alignment $align|| in horizontal $horizontal"
     //%num1.min=0 num1.max=99 num1.defl=26
     //%num2.min=0 num2.max=99 num2.defl=48
     //%group="show screen"
