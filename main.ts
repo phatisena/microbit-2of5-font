@@ -200,6 +200,8 @@ namespace font2of5 {
             }
         }
     }
+    
+    export enum showalign {left = 1, center = 2, right = 3}
 
     /**
      * render two number values in 2of5 code to the screen
@@ -213,12 +215,43 @@ namespace font2of5 {
     //%num2.min=0 num2.max=99 num2.defl=48
     //%group="show screen"
     //%weight=2
-    export function showduonum(num1: number = 0, num2: number = 0, horizontal: boolean = false ) {
+    export function showduonum(num1: number = 0, num2: number = 0, align:showalign, horizontal: boolean = false ) {
         let numl1: number[] = [Math.floor(num1 / 10) % 10, num1 % 10]
         let numl2: number[] = [Math.floor(num2 / 10) % 10, num2 % 10]
-        show2of5in1d(numl1[0],false,0,horizontal)
-        show2of5in1d(numl1[1],false,1,horizontal)
-        show2of5in1d(numl2[0],false,3,horizontal)
-        show2of5in1d(numl2[1],false,4,horizontal)
+        switch (align) {
+            case 1 :
+            numl1.unshift(Math.floor(num1 / 100) % 10)
+            numl2.removeAt(0)
+            break;
+            case 2 :
+            break;
+            case 3 :
+            numl2.unshift(Math.floor(num2 / 100) % 10)
+            numl1.removeAt(0)
+            default:
+            return;
+        }
+        switch (align) {
+            case 1 :
+            show2of5in1d(numl1[0],false,0,horizontal)
+            show2of5in1d(numl1[1],false,1,horizontal)
+            show2of5in1d(numl1[2],false,2,horizontal)
+            show2of5in1d(numl2[0],false,4,horizontal)
+            break;
+            case 2 :
+            show2of5in1d(numl1[0],false,0,horizontal)
+            show2of5in1d(numl1[1],false,1,horizontal)
+            show2of5in1d(numl2[0],false,3,horizontal)
+            show2of5in1d(numl2[1],false,4,horizontal)
+            break;
+            case 3 :
+            show2of5in1d(numl1[0],false,0,horizontal)
+            show2of5in1d(numl2[0],false,2,horizontal)
+            show2of5in1d(numl2[1],false,3,horizontal)
+            show2of5in1d(numl2[2],false,4,horizontal)
+            break;
+            default:
+            return;
+        }
     }
 }
