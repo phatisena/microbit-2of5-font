@@ -228,6 +228,7 @@ namespace font2of5 {
             case 3 :
             numl2.unshift(Math.floor(num2 / 100) % 10)
             numl1.removeAt(0)
+            break;
             default:
             return;
         }
