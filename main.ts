@@ -16,6 +16,12 @@ namespace font2of5 {
         return true
     }
     
+    /**
+     * write to number in 2of5 code
+     * @param to write 1st 2of5 code
+     * @param to write 2nd 2of5 code
+     * but two param are not existing by two value
+     */
     //%blockid=font2of5_write2of5input
     //%block="write 2of5 code ( $num1 and $num2 )"
     //%num1.min=0 num1.max=4 num1.defl=1
@@ -38,6 +44,13 @@ namespace font2of5 {
         return numval
     }
 
+    /**
+     * write to show number in 2of5 code
+     * like 1d barcode
+     * @param are the number input to render
+     * @param is the guard with place one 2of5 to main 2of5 like invert 2of5 code if true
+     * @param as boolean to render in horizontal mode if true
+     */
     //%blockid=font2of5_print2of5number
     //%block="show 2of5 number $valinput with guard $pin|| in horizontal mode $horizontal"
     //%valinput.defl=84210
