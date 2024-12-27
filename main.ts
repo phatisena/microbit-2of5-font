@@ -45,7 +45,7 @@ namespace font2of5 {
     }
 
     /**
-     * write to show number in 2of5 code
+     * write number to show number in 2of5 code
      * like 1d barcode
      * @param are the number input to render
      * @param is the guard with place one 2of5 to main 2of5 like invert 2of5 code if true
@@ -60,6 +60,13 @@ namespace font2of5 {
         show2of5string(valinput.toString(), pin, horizontal)
     }
 
+    /**
+     * write string as number to show number in 2of5 code
+     * like 1d barcode
+     * @param are the string input to render (but only number charcter no special charcter)
+     * @param is the guard with place one 2of5 to main 2of5 like invert 2of5 code if true
+     * @param as boolean to render in horizontal mode if true
+     */
     //%blockid=font2of5_print2of5numberasstring
     //%block="show 2of5 number $valinput as string with guard $pin|| in horizontal mode $horizontal"
     //%valinput.defl="84210"
